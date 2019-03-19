@@ -1,0 +1,132 @@
+class Room:
+
+    text = []
+    questions = []
+
+    def Set(self, text_, *quest_):
+        self.text = text_
+        self.questions = quest_
+
+    def PrintText(self):
+        print(self.text)
+        j = 0
+        for i in self.questions:
+            if j % 2 == 0:
+                print(i)
+            j += 1
+    
+    def Jump(self, N):
+        return self.questions[(N - 1) * 2 + 1]
+
+class Pearson:
+
+    Name = []
+
+    strength = 5 # сила
+    dexterity = 5 # ловкость
+    intelligence = 5 # интеллект
+    perception = 5 # восприятие
+    constitution = 5 # телосложение
+
+    lucky = 0 # удача
+    bartering = 0 # обмен
+    persuation = 0 #убеждение
+    thievery = 0 # воровство
+    sneaking = 0 # скрытность
+
+    def Create(self):
+
+        print('введите имя персонажа')
+        Name = input()
+
+        a = 5
+        while a > 0:
+            print('свободные очки ', a)
+            print('1 сила ', self.strength)
+            print('2 ловкость ', self.dexterity)
+            print('3 интеллект ', self.intelligence)
+            print('4 восприятие ', self.perception)
+            print('5 телосложение ', self.constitution)
+            print('6 сброс')
+            a -= 1
+            N = int(input())
+            if N == 1:
+                self.strength += 1
+            if N == 2:
+                self.dexterity += 1
+            if N == 3:
+                self.intelligence += 1
+            if N == 4:
+                self.perception += 1
+            if N == 5:
+                self.constitution += 1
+            if N == 6:
+                a = 5
+                self.strength = 5
+                self.dexterity = 5
+                self.intelligence = 5
+                self.perception = 5
+                self.constitution = 5
+        a = 3
+        while a > 0:
+            print('свободные очки ', a)
+            print('1 удача ', self.lucky)
+            print('2 обмен ', self.bartering)
+            print('3 убеждение ', self.persuation)
+            print('4 воровство ', self.thievery)
+            print('5 скрытность ', self.sneaking)
+            print('6 сброс') 
+            a -= 1
+            N = int(input())
+            if N == 1:
+                self.lucky += 1
+            if N == 2:
+                self.bartering += 1
+            if N == 3:
+                self.persuation += 1
+            if N == 4:
+                self.thievery += 1
+            if N == 5:
+                self.sneaking += 1
+            if N == 6:
+                a = 5
+                self.lucky = 5
+                self.bartering = 5
+                self.persuation = 5
+                self.thievery = 5
+                self.sneaking = 5
+
+    def Status(self):
+
+        print('1 сила ', self.strength)
+        print('2 ловкость ', self.dexterity)
+        print('3 интеллект ', self.intelligence)
+        print('4 восприятие ', self.perception)
+        print('5 телосложение ', self.constitution)
+        print('свободные очки ', a)
+        print('1 удача ', self.lucky)
+        print('2 обмен ', self.bartering)
+        print('3 убеждение ', self.persuation)
+        print('4 воровство ', self.thievery)
+        print('5 скрытность ', self.sneaking)
+        
+p = Pearson()
+# p.Create()
+
+a = [Room(), Room(), Room(), Room()]
+
+a[0] = Room()
+a[1] = Room()
+a[2] = Room()
+a[3] = Room()
+a[0].Set('первая комната', '1 переход во вторую', 1, '2 переход в третью', 2, '3 смерть', 3)
+a[1].Set('вторая команата', '1 переход в третью', 2, '2 переход в первую', 0, '3 смерть', 3)
+a[2].Set('третья команата', '1 переход в первую', 0, '2 переход во вторую', 0, '3 смерть', 3)
+a[3].Set('смерть')
+
+x = 0
+a[x].PrintText()
+while x != 3:
+    N = int(input())
+    x = a[x].Jump(N)
+    a[x].PrintText()
